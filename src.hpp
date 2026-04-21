@@ -93,10 +93,10 @@ public:
                 Vec d = pos_cur - pj;
                 double dlen = d.norm();
                 double safe = r + rj + 0.2; // small buffer
-                double pen = std::max(0.0, safe - dlen);
+                double pen = ((0.0) > (safe - dlen) ? 0.0 : (safe - dlen));
                 double w = (pen > 0 ? 1.5 + (j < id ? 0.8 : 0.2) : 0.0);
                 if (dlen > 1e-9) repel += d.normalize() * (w * (safe / (dlen + 1e-6)));
-                crowd_factor += std::max(0.0, safe / (dlen + 1e-6) - 1.0);
+                crowd_factor += (((0.0) > (safe / (dlen + 1e-6) - 1.0)) ? 0.0 : (safe / (dlen + 1e-6) - 1.0));
             }
         }
 
